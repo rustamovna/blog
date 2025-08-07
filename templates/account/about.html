@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biz haqimizda | Sh's🎀N's</title>
+  <style>
+    :root {
+      --primary: #ff69b4;           /* Hot Pink */
+      --primary-dark: #d14d95;      /* Deep Pink */
+      --primary-light: #ffe6f0;     /* Very light pastel pink */
+      --secondary: #ffcce0;         /* Lighter pink for secondary highlights */
+      --text: #333333;
+      --text-light: #777777;
+      --border: #ffccd5;
+      --background: #fff8fc;
+      --white: #ffffff;
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e1f4ff, #f8fdff);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Header styles matching main page */
+    header {
+      background-color: var(--light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo svg {
+      margin-right: 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      font-size: 16px;
+      color: var(--text);
+      transition: all 0.3s;
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+
+    nav a:hover {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    nav a.active {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .korzinka {
+      background-color: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .korzinka:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* About page content styles */
+    .about-hero {
+      background: linear-gradient(135deg, var(--primary), #48cae4);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .about-hero h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease;
+    }
+
+    .about-hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+      animation: fadeIn 1s ease 0.3s forwards;
+      opacity: 0;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .about-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: slideInLeft 1s ease;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .about-text {
+      animation: slideInRight 1s ease;
+    }
+
+    .about-text h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .about-text p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s;
+      animation: fadeInUp 1s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .stats {
+      background: var(--primary);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .stats-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .stat-item {
+      animation: fadeIn 1s ease;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .team {
+      text-align: center;
+    }
+
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .team-member {
+      animation: fadeInUp 1s ease;
+    }
+
+    .team-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-light);
+      margin: 0 auto 20px;
+    }
+
+    .contact {
+      background: var(--gray);
+      padding: 60px 0;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .contact-info {
+      list-style: none;
+    }
+
+    .contact-info li {
+      margin-bottom: 20px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .contact-info i {
+      position: absolute;
+      left: 0;
+      top: 5px;
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .map-container {
+      height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background: var(--text);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .social-links {
+      margin-bottom: 20px;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 20px;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-light);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .team-members {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      nav {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav a {
+        margin: 5px 10px;
+      }
+
+      .features,
+      .stats-container,
+      .team-members {
+        grid-template-columns: 1fr;
+      }
+
+      .about-hero h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header matching main page -->
+  <header>
+    <div class="logo">
+      Sh's🎀N's
+    </div>
+    <nav>
+      <a href="{% url 'blog:home' %}">Home</a>
+      <a href="{% url 'blog:about' %}" class="active">About</a>
+      <a href="{% url 'blog:contact' %}">Contact</a>
+     {% if request.user.is_authenticated %}
+          <a href="{% url 'blog:profile' %}">🎀 Profile</a>
+      {% else %}
+          <a href="{% url 'login' %}">🔐 Login</a>
+          <a href="{% url 'signup' %}">📝 Sign Up</a>
+      {% endif %}
+
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <h1>Bizning Python Blog platformamiz haqida</h1>
+    <p>3 yillik tajriba | 5000+ o‘quvchi | 100+ maqola va loyihalar</p>
+  </section>
+
+  <section class="section">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Bizning maqsadimiz</h2>
+        <p>Python Blog — bu dasturlashni o‘rganishni istagan yoshlar uchun mo‘ljallangan bepul ta’lim platformasi. Biz foydalanuvchilarga maqolalar, videolar, va interaktiv loyihalar orqali bilimlarni taqdim etamiz.</p>
+        <p>Saytimizda Python asoslari, OOP, Django, va sun’iy intellektga oid mavzular yoritiladi. Har bir darsda amaliy misollar, testlar va uy vazifalari mavjud.</p>
+        <p>Biz o‘z jamoamiz bilan yoshlarning texnologiyaga bo‘lgan qiziqishini oshirishga harakat qilamiz!</p>
+      </div>
+      <div class="about-image">
+      <img src="{% static '1.jpg' %}" alt="Python education">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section">
+    <h2 class="section-title">Nima uchun biz?</h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <h3>Interaktiv kurslar</h3>
+        <p>Yangi boshlovchilar uchun sodda va tushunarli darslar</p>
+      </div>
+
+      <div class="feature-card" style="animation-delay: 0.2s;">
+        <div class="feature-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3>Real loyihalar</h3>
+        <p>Django, Telegram bot, va boshqa amaliy mashg‘ulotlar</p>
+      </div>
+
+      <div class="feature-card" style="animation-delay: 0.4s;">
+        <div class="feature-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h3>Community yordami</h3>
+        <p>Har doim savol berish va tajriba almashish imkoni mavjud</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">3+</div>
+        <p>Yillik tajriba</p>
+      </div>
+      <div class="stat-item" style="animation-delay: 0.2s;">
+        <div class="stat-number">5000+</div>
+        <p>O‘quvchilar</p>
+      </div>
+      <div class="stat-item" style="animation-delay: 0.4s;">
+        <div class="stat-number">100+</div>
+        <p>Maqolalar</p>
+      </div>
+      <div class="stat-item" style="animation-delay: 0.6s;">
+        <div class="stat-number">50+</div>
+        <p>Loyihalar</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section team">
+    <h2 class="section-title">Bizning jamoa</h2>
+    <div class="team-members">
+      <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Team member" class="team-photo">
+        <h4>Alisher Mamatov</h4>
+        <p>Asoschi & Python ustoz</p>
+      </div>
+      <div class="team-member" style="animation-delay: 0.2s;">
+        <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Team member" class="team-photo">
+        <h4>Feruza Akramova</h4>
+        <p>Kurs muallifi (AI)</p>
+      </div>
+      <div class="team-member" style="animation-delay: 0.4s;">
+        <img src="https://randomuser.me/api/portraits/men/64.jpg" alt="Team member" class="team-photo">
+        <h4>Jasur Toirov</h4>
+        <p>Veb dasturchi & mentor</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <div class="contact-container">
+      <div>
+        <h2 class="section-title" style="text-align: left;">Aloqa uchun</h2>
+        <ul class="contact-info">
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            Toshkent shahar , Chilonzor
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            +998 91 123 45 67
+          </li>
+          <li>
+            <i class="fas fa-envelope"></i>
+            contact@pythonblog.uz
+          </li>
+          <li>
+            <i class="fas fa-clock"></i>
+            Har kuni: 9:00 - 22:00
+          </li>
+        </ul>
+      </div>
+      <div class="map-container">
+        <iframe
+          src="https://yandex.uz/map-widget/v1/?from=mapframe&ll=69.203705%2C41.285846&mode=search&ol=geo&oid=152887169328&z=16"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-telegram"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; 2025 Python Blog. Barcha huquqlar himoyalangan.</p>
+  </footer>
+
+  <script>
+    // Animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedElements = document.querySelectorAll('.about-text, .about-image, .feature-card, .stat-item, .team-member');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translate(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transition = 'all 0.8s ease';
+
+        if (el.classList.contains('about-text')) {
+          el.style.transform = 'translateX(50px)';
+        } else if (el.classList.contains('about-image')) {
+          el.style.transform = 'translateX(-50px)';
+        } else {
+          el.style.transform = 'translateY(30px)';
+        }
+
+        const delay = el.getAttribute('style')?.match(/animation-delay: (\d+\.?\d*)s/);
+        if (delay) {
+          el.style.transitionDelay = delay[1] + 's';
+        }
+
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
